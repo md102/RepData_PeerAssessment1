@@ -203,7 +203,7 @@ hr {
 <body>
 <p>The below analysis is done on a dataset that records with 5 minute intervals the number of steps taken by an anonymous volunteer during a two month period. The below document shows all R commands required for the analysis. </p>
 
-<p>To reproduce this analysis, the dataset (activity.txt) should be available in the current working directory. The analysis also makes use of the <code>plyr</code> R-package. </p>
+<p>To reproduce this analysis, the dataset (activity.txt) should be in the current working directory. The analysis also makes use of the <code>plyr</code> R-package. </p>
 
 <pre><code class="r">library(plyr)
 knitr::opts_chunk$set(fig.path=&#39;figure/&#39;)  # store figures in the /figure directory
@@ -211,7 +211,7 @@ knitr::opts_chunk$set(fig.path=&#39;figure/&#39;)  # store figures in the /figur
 
 <h2>1. Loading and preprocessing the data</h2>
 
-<p>The below commands loads the data set and shows the structure of the raw data.</p>
+<p>The below commands load the data set and shows the structure of the raw data.</p>
 
 <pre><code class="r">df &lt;- read.table(&#39;activity.csv&#39;, header = TRUE, sep = &quot;,&quot;)
 head(df)
@@ -246,9 +246,9 @@ c(min(df$date), max(df$date))
 <pre><code>## [1] &quot;2012-10-01&quot; &quot;2012-11-30&quot;
 </code></pre>
 
-<h2>2. What is mean total number of steps taken per day?</h2>
+<h2>2. What is the mean total number of steps taken per day?</h2>
 
-<p>The <code>steps</code> column  contains missing values (encoded as NAs). In the first analysis of the data, these are excluded from the analysis. With this treatment of NAs, the below plot shows total number of steps per day during the two months:</p>
+<p>The <code>steps</code> column  contains missing values (encoded as NAs). In the first analysis of the data, these are excluded from the analysis. With this treatment of NAs, the below plot shows the total number of steps per day during the two months:</p>
 
 <pre><code class="r">collect_steps &lt;- function(x) {
     # sum values in the &#39;steps&#39; column
@@ -407,7 +407,7 @@ hist(df_daily_steps_full$tot_steps / 1000,
 
 <p>Somewhat unexpectedly, the values for the mean (=<em>10770</em>) and median (=<em>10770</em>) now coincide. Moreover, both have moved closer to the median of the total steps/day computed from the data, where NA-data points were simply removed from the analysis. (Above, this gave the mean=<em>9354</em> and median=<em>10395</em>). All of these means and medians are roughly the same with the exception of the mean=<em>9354</em>. The difference between the two means can be understood by comparing the two histograms shown above: when the total number of steps/day is computed by neglecting NAs, the NAs are effectively counted as zero. This creates the peak around 0 in the first histogram, which weights the mean down. The above method of removing the NAs emphasizes the mean behaviour, and the peak around 0 (in the first histogram) has almost completely moved to the peak around the middle (in the latter histogram). From the shape of the latter histogram, it is also not unreasonable that the mean and median coincide. </p>
 
-<h2>5. Are there differences in activity patterns between weekdays and weekends?</h2>
+<h2>5. Are there differences in the activity patterns between weekdays and weekends?</h2>
 
 <p>From the date of the measurement, one can divide the imputed data set into two parts: a) measurements on weekends and b) measurements on weekdays. The below plots show the average activity as a function of time of day for these separate subsets. From the plots it is apparent that the two subsets have different typical behaviours.</p>
 

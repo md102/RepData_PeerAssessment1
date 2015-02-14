@@ -7,7 +7,7 @@ output:
 
 The below analysis is done on a dataset that records with 5 minute intervals the number of steps taken by an anonymous volunteer during a two month period. The below document shows all R commands required for the analysis. 
 
-To reproduce this analysis, the dataset (activity.txt) should be available in the current working directory. The analysis also makes use of the `plyr` R-package. 
+To reproduce this analysis, the dataset (activity.txt) should be in the current working directory. The analysis also makes use of the `plyr` R-package. 
 
 
 ```r
@@ -16,7 +16,7 @@ knitr::opts_chunk$set(fig.path='figure/')  # store figures in the /figure direct
 ```
 
 ## 1. Loading and preprocessing the data
-The below commands loads the data set and shows the structure of the raw data.
+The below commands load the data set and shows the structure of the raw data.
 
 
 ```r
@@ -59,8 +59,8 @@ c(min(df$date), max(df$date))
 ## [1] "2012-10-01" "2012-11-30"
 ```
 
-## 2. What is mean total number of steps taken per day?
-The `steps` column  contains missing values (encoded as NAs). In the first analysis of the data, these are excluded from the analysis. With this treatment of NAs, the below plot shows total number of steps per day during the two months:
+## 2. What is the mean total number of steps taken per day?
+The `steps` column  contains missing values (encoded as NAs). In the first analysis of the data, these are excluded from the analysis. With this treatment of NAs, the below plot shows the total number of steps per day during the two months:
 
 
 ```r
@@ -243,7 +243,7 @@ summary(df_daily_steps_full$tot_steps)
 
 Somewhat unexpectedly, the values for the mean (=*10770*) and median (=*10770*) now coincide. Moreover, both have moved closer to the median of the total steps/day computed from the data, where NA-data points were simply removed from the analysis. (Above, this gave the mean=*9354* and median=*10395*). All of these means and medians are roughly the same with the exception of the mean=*9354*. The difference between the two means can be understood by comparing the two histograms shown above: when the total number of steps/day is computed by neglecting NAs, the NAs are effectively counted as zero. This creates the peak around 0 in the first histogram, which weights the mean down. The above method of removing the NAs emphasizes the mean behaviour, and the peak around 0 (in the first histogram) has almost completely moved to the peak around the middle (in the latter histogram). From the shape of the latter histogram, it is also not unreasonable that the mean and median coincide. 
 
-## 5. Are there differences in activity patterns between weekdays and weekends?
+## 5. Are there differences in the activity patterns between weekdays and weekends?
 From the date of the measurement, one can divide the imputed data set into two parts: a) measurements on weekends and b) measurements on weekdays. The below plots show the average activity as a function of time of day for these separate subsets. From the plots it is apparent that the two subsets have different typical behaviours.
 
 
